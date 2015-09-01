@@ -1,0 +1,16 @@
+%% forward_backward: function description
+function [outputs] = forward_backward(A_mat, O_mat, observ)
+    k = size(observ);  % whats that?
+    [n, m] = size(O_mat);
+    prob_mat = zeros(n, k);
+    fw = zeros(n, k+1);
+    bw = zeros(n, k+1);
+
+    fw(:, 1) = 1.0/n;
+    for obs_ind=1:k+1
+        f_row_vec = fw(:, obs_ind);
+        fw(:, obs_ind+1) = f_row_vec * A_mat * diag(diag(O_mat(:, observ(obs_ind))));
+    end
+
+
+    outputs = ;
